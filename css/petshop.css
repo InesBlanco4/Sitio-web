@@ -1,0 +1,18 @@
+/*
+font-family: 'Bebas Neue', cursive;
+*/
+footer {
+    background-color: #FFD1DC;
+}
+
+h1,
+h2 {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.hero {
+    background: url(../img/pomerania.jpg) no-repeat;
+    background-size: cover;
+    height: 0.5vh color: white;
+    min-height: 800px;
+}
