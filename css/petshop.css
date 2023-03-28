@@ -9,10 +9,17 @@ h1,
 h2 {
     font-family: 'Bebas Neue', cursive;
 }
+h1{ font-weight; bold;
+}
 
 .hero {
-    background: url(../img/pomerania.jpg) no-repeat;
+    background: url(../img/perro.jpg) no-repeat;
     background-size: cover;
     height: 0.5vh color: white;
     min-height: 800px;
 }
+
+background: #fbfbfb;
+background: linear-gradient(180deg,#fbfbfb 0%, #ffd1dc 20%);
+background: -webkit-linear-gradient(180deg,#fbfbfb 0%, #ffd1dc 20%);
+background: -moz-linear-gradient(180deg,#fbfbfb 0%, #ffd1dc 20%);
