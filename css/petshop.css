@@ -5,6 +5,13 @@ footer {
     background-color: #FFD1DC;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
+.scroll_section {
+    scroll-margin-top: 60px;
+}
 h1,
 h2 {
     font-family: 'Bebas Neue', cursive;
@@ -16,4 +23,64 @@ h2 {
     background-size: cover;
     height: 0.5vh color: white;
     min-height: 800px;
+}
+
+.lista-secciones {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lista-secciones li {
+    margin: 10px 0;
+}
+
+.lista-secciones li a {
+    background-color: transparent;
+    font-family: 'Times New Roman', Times, bold;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #000000;
+    transition: all .2s ease-in-out;
+    display: block;
+}
+
+.lista-secciones li a: :hover {
+    color: #212529;
+    background-color: #dadada;
+}
+
+.lista-secciones li a img {
+    width: 300px;
+    height: 188px;
+    filter: grayscale();
+    transition: all .2s ease-in-out;
+    margin-right: 1rem;
+    opacity: 0,7;
+}
+
+.lista-secciones li a:hover img {
+    filter: none;
+    margin-right: 1,4rem;
+    opacity: 1;
+}
+.opiniones{
+    background-color: #FFD1DC;
+    padding-bottom: 4rem !important;
+}
+
+.opiniones{
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.list-group-item{
+    text-align: center;
+    background-color: transparent;
+}
+
+
+.mapa iframe {
+    width: 100%;
+    aspect-ratio: 1.4;
 }
