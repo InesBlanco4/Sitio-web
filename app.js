@@ -4,10 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var session = require ('express/session');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { title } = require('process');
 
 var app = express();
 
@@ -21,8 +23,33 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(session({
+  secret: 'krajdiaskjnfaow',
+  resave: false,
+  saveUninitialized: true
+}));
+
+//app.use('/', indexRouter);
+//app.use('/users', usersRouter);
+
+app.get('/', function (req, res) {
+  var conocido = BooLean(req.session.nombre);
+
+  res.render('index',{
+    title: 'sesiones en express.js',
+    conocido: conocido,
+    nombre: req.session.nombre
+  });
+})
+app.post('/ingresar', function(req, res){
+  if (req.body.nombre) {
+    req.session.nombre = req.body.nombre
+  }
+  res.redirect('/')
+});
+app.get('/salir', function(req, res) {
+  req.session.destroy();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
