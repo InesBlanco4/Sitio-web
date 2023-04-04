@@ -1,15 +1,3 @@
-<h1>{{title}}</h1>
-{{#if conocido}}
-<p>Hola {{nombre}} <a href="/salir">Salir</a></p>
-{{/if}}
-
-{{unless conocido}}
-<p>No te conozco</p>
-<form action="/ingresar" method="post">
-  <input type="text" name="nombre"> <button>ingresar</button>
-</form>
-{{unless}}
-
 <div class="container-fluid">
   <div id="/inicio" class="row align-items-center hero">
     <div class="col-lg-3 offset-lg-2">
@@ -23,11 +11,38 @@
     </div>
   </div>
   <div class="row my-3">
+    <div id="novedades" class="col-md-5 offset-md-2 scroll-section">
+      <h2>Novedades</h2>
+      <ul class="lista-novedades">
+        {{#each novedades}}
+        <li>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{id}}"><img src="{{imagen}}">{{titulo}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    {{#each novedades}}
+    <div class="modal fade" id="modal{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">{{titulo}}</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img src="{{imagen}}" alt="">
+            <h4>{{subtitulo}}</h4>
+            <p>{{cuerpo}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
     <div id="secciones" class="col-md-5 offset-md-2 py-3">
       <h2>Secciones</h2>
       <ul class="lista-secciones">
-        <li><a href="#"><img src="/images/productos.jpg" alt="">Productos</a></li>
-        <li><a href="#"><img src="/images/servicios.jpg" alt="">Servicios</a></li>
+        <li><a href="#PRODUCTOS"><img src="/images/productos.jpg" alt="">Productos</a></li>
+        <li><a href="#servicios"><img src="/images/servicios.jpg" alt="">Servicios</a></li>
         <li><a href="#contacto"><img src="/images/contacto.jpg" alt="">Contacto</a></li>
       </ul>
     </div>
@@ -47,20 +62,21 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="opiniones">
-                <h5>"Texto"</h5>
-                <p>Anonimo</p>
+                <h5>"Excelente atención al cliente en línea, siempre dispuestos a ayudar al otro."</h5>
+                <p>Geronimo Paredes</p>
               </div>
             </div>
             <div class="carousel-item">
               <div class="opiniones">
-                <h5>"Texto2"</h5>
-                <p>Anonimo2</p>
+                <h5>"Tienen muy amplia variedad y un gran amor para nuestros compañeros de toda la vida"</h5>
+                <p>Juana Garcia</p>
               </div>
             </div>
             <div class="carousel-item">
               <div class="opiniones">
-                <h5>"Texto3"</h5>
-                <p>Anonimo3</p>
+                <h5>"La página web de esta petshop es simplemente espectacular. No solo es fácil de navegar, sino que
+                  también está muy bien diseñada y actualizada regularmente con nuevos productos"</h5>
+                <p>Lucia Martinez</p>
               </div>
             </div>
           </div>
@@ -79,98 +95,129 @@
     </div>
     <!--OPINIONES CARRUSEL-->
   </div>
-
-  <div class="col-md-3 my-3">
-    <div class="rounded"></div>
+  <h2><div id="PRODUCTOS" class="row py-4" scroll_section></h2> 
+    <h2>PRODUCTOS</h2>
   </div>
-  <h2>Lista</h2>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-  </ul>
-  <ol>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-  </ol>
-  <h2><a href="https://www.youtube.com/watch?v=nos_w39ayxg&ab_channel=toberlets" target="_blank">Presionar
-      aqui</a>
-  </h2>
-
-  <!--FORMULARIO-->
-  <form action="">
-    <p>
-      <input type="text" placeholder="Nombre">
-    </p>
-    <p><input type="text" placeholder="Apellido">
-    </p>
-    <p><input type="text" placeholder="Correo Electronico"></p>
-    <input type="submit" value="Enviar">
-  </form>
-  <!--FORMULARIO-->
-
-  <!--area-->
-  <form action="" method="">
-
-    <p>
-      <label for="comentarios">Comentarios</label>
-      <textarea name="comentarios"></textarea>
-    </p>
-    </p>
-    <p>
-      <input type="submit" value="Enviar" />
-      <input type="reset" value="Borrar" />
-    </p>
-  </form>
-
-  <!--area-->
-
-
-  <h2>Contacto</h2>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">romaji4ever@gmail.com</li>
-    <li class="list-group-item">+54 9 11 4949-7946</li>
-    <li class="list-group-item">@romaji4ever</li>
-    <li class="list-group-item">Buenos Aires, Argentina</li>
-  </ul>
-  <!--IMPORTANTE AGREGAR scroll_section PARA QUE DESLICE BIEN SIN TAPAR LA PARTE DE ARRIBA-->
-  <div id="contacto" class="row py-4" scroll_section>
-    <!--IMPORTANTE AGREGAR scroll_section PARA QUE DESLICE BIEN SIN TAPAR LA PARTE DE ARRIBA-->
-    <div class="col-md-4 offset-md-2">
-      <h2>visitanos</h2>
-      <div class="mapa">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.210053241682!2d-58.42230558423686!3d-34.59884956474881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca7cd54f107b%3A0x88bd8fe0e0b6e3a6!2sCentro%20de%20e-Learning%20UTN%20BA!5e0!3m2!1ses!2sar!4v1679985511848!5m2!1ses!2sar"></iframe>
+  <div class="col-md-3 offset-4">
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/bola de rodar.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/botitas.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/bozal.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/correa alas.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/lavadordepatas.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/pelotainteractiva.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/peluche.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/platos.jpg" class="ratio ratio-16x9">
+        </div>
+        <div class="carousel-item">
+          <img src="images/vestido.jpg" class="ratio ratio-16x9">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div id="SERVICIOS" class="row offset-4" scroll_section></div>
+<h2 id="servicios">
+  <h2>SERVICIOS</h2>
+  <div class="row row-cols-1 row-cols-md-3 offset-4">
+    <div class="col">
+    <div class="card-group">
+      <div class="card">
+        <img src="images/microchip.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Microchip</h5>
+          <p class="card-text">Indoloro e ideal para jamas perder a tu fiel compañero</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/servicio ba;o.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Baño y todos sus cuidados</h5>
+          <p class="card-text">Nos encargamos de darle los mejores cuidados posibles</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/vacunas.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Vacunas</h5>
+          <p class="card-text">De la mejor calidad unicamente para garantizar su buena salud</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
       </div>
     </div>
-    <div class="col-md-4 mt-4 mt-sm-0">
-      <h2>Contactanos</h2>
-      <form class="row g-3" action="/" method="post">
-        <div class="col-md-6">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" name="nombre">
-        </div>
-        <div class="col-md-6">
-          <label for="apellido" class="form-label">Apellido</label>
-          <input type="text" class="form-control" id="apellido" name="apellido">
-        </div>
-        <div class="col-12">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="email@email.com" name="email">
-        </div>
-        <div class="col-12">
-          <label for="telefono" class="form-label">Telefono</label>
-          <input type="text" class="form-control" id="tel" placeholder="..." name="tel">
-        </div>
-        <div class="col-12">
-          <label for="mensaje" class="form-label">Mensaje</label>
-          <textarea class="form-control" id="mensaje" rows="3" name="mensaje"></textarea>
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Enviar</button>
-        </div>
-      </form>
+  </div>
+
+<h2>Contacto</h2>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">romaji4ever@gmail.com</li>
+  <li class="list-group-item">+54 9 11 4949-7946</li>
+  <li class="list-group-item">@romaji4ever</li>
+  <li class="list-group-item">Buenos Aires, Argentina</li>
+</ul>
+<!--IMPORTANTE AGREGAR scroll_section PARA QUE DESLICE BIEN SIN TAPAR LA PARTE DE ARRIBA-->
+<div id="contacto" class="row py-4" scroll_section>
+  <!--IMPORTANTE AGREGAR scroll_section PARA QUE DESLICE BIEN SIN TAPAR LA PARTE DE ARRIBA-->
+  <div class="col-md-4 offset-md-2">
+    <h2>visitanos</h2>
+    <div class="mapa">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.210053241682!2d-58.42230558423686!3d-34.59884956474881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca7cd54f107b%3A0x88bd8fe0e0b6e3a6!2sCentro%20de%20e-Learning%20UTN%20BA!5e0!3m2!1ses!2sar!4v1679985511848!5m2!1ses!2sar"></iframe>
     </div>
   </div>
-  <!--contacto-->
+  <div class="col-md-4 mt-4 mt-sm-0">
+    <h2>Contactanos</h2>
+    <form class="row g-3" action="/" method="post">
+      <div class="col-md-6">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre">
+      </div>
+      <div class="col-md-6">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="apellido" name="apellido">
+      </div>
+      <div class="col-12">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="email@email.com" name="email">
+      </div>
+      <div class="col-12">
+        <label for="telefono" class="form-label">Telefono</label>
+        <input type="text" class="form-control" id="tel" placeholder="..." name="tel">
+      </div>
+      <div class="col-12">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" rows="3" name="mensaje"></textarea>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--contacto-->

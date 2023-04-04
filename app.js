@@ -4,12 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const session = require ('express/session');
 require('dotenv').config();
+var session = require('express-session');
+var fileUpload = require ('express-fileupload') 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const { title } = require('process');
+var loginRouter = require('./routes/admin/login')
+var adminRouter = require('./routes/admin/Novedades')
 
 var app = express();
 
@@ -23,27 +25,44 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'e4966b3160fcd444c8c62f09015fe534',
+  resave: false,
+  saveUninitialized: true
+
+}))
+
+secured = async (req, res, next) => {
+  try {
+    console.log(req.session.id_usuario);
+    if (req.session.id_usuario) {
+      next();
+    } else {
+      res.redirect('/admin/login')
+    }
+  } catch (error) {
+    console.console.log(error);
+  }
+}
+
+app.use(fileUpload({
+  useTempFiles: true, 
+  tempFileDir: '/tmp/'
+}))
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-app.get('/', function (req, res) {
-  var conocido = BooLean(req.session.nombre);
-
-  res.render('index',{
-    title: 'sesiones en express.js',
-    conocido: conocido,
-    nombre: req.session.nombre
-  });
-})
+app.use('/admin/login', loginRouter);
+app.use('/admin/Novedades', secured, adminRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

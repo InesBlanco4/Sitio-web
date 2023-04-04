@@ -10,7 +10,7 @@ html{
 }
 
 .scroll_section {
-    scroll-margin-top: 60px;
+    scroll-margin-top: 80px;
 }
 h1,
 h2 {
@@ -39,7 +39,7 @@ h2 {
     background-color: transparent;
     font-family: 'Times New Roman', Times, bold;
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #000000;
     transition: all .2s ease-in-out;
     display: block;
@@ -79,6 +79,9 @@ h2 {
     background-color: transparent;
 }
 
+.PRODUCTOS{
+    margin-top: 500px;
+}
 
 .mapa iframe {
     width: 100%;
